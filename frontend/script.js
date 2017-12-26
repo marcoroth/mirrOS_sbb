@@ -13,8 +13,6 @@ var sbb_categories;
 var sbb_cols;
 var sbb_cols_width;
 
-var sbb_init = true;
-
 $(document).ready(function () {
 	getSBBParameter();
 });
@@ -97,10 +95,6 @@ function sbb() {
 	var url = "http://transport.opendata.ch/v1/stationboard?station=" + sbb_station + "&limit=" + sbb_amount + fields;
 
 	$("#sbb_station").text(sbb_station);
-	if (sbb_init){
-		$(".sbb tr:last").append("<tr><td>Anzahl Abfahrten:</td><td> " + sbb_limit + " Stk. </td></tr><tr><td>Folgende Linen:</td><td> " + lines_text + "</td></tr><tr><td>Folgende Kategorien:</td><td> " + categories_text + "</td></tr><tr><td>Anzahl Gehminuten:</td><td> " + sbb_time_to_station + " min</td></tr></td>");
-		sbb_init = false;
-	}
 	$(document).ready(function() {
 	  window.setTimeout(function() {
 	    updateSBB();
