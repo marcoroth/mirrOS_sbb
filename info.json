@@ -1,0 +1,18 @@
+{
+	"module": {
+		"name": "Abfahrten (CH)",
+		"version": "1.0.0",
+		"description": "Ein Modul zum Anzeigen der nächsten ÖV-Verbindungen ab einer bestimmten Station",
+		"module_url": "https://glancr.de/module/mobilitaet/verkehrsbetriebe/",
+		"download_url": "https://api.glancr.de/update/moduleZips/sbb-1.0.0.zip",
+		"category": "mobilitaet",
+		"release_date": "2016-05-25",
+		"last_update": "2017-12-26"
+	},
+	"creator": {
+		"name": "Marco Roth",
+		"contact": "mr@glancr.de",
+		"website": "https://www.marco-roth.ch",
+		"profile": "https://www.glancr.de/entwickler/marcoroth"
+	}
+}
