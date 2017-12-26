@@ -1,20 +1,19 @@
-var station;
-var limit;
-var amount;
-var time_to_station;
+var sbb_station;
+var sbb_limit;
+var sbb_amount;
+var sbb_time_to_station;
 
-var lines_raw;
-var categories_raw;
-var cols_raw;
-var cols_width_raw;
+var sbb_lines_raw;
+var sbb_categories_raw;
+var sbb_cols_raw;
+var sbb_cols_width_raw;
 
-var lines;
-var categories;
-var cols;
-var cols_width;
+var sbb_lines;
+var sbb_categories;
+var sbb_cols;
+var sbb_cols_width;
 
 var sbb_init = true;
-
 
 $(document).ready(function () {
 	getSBBParameter();
@@ -25,28 +24,28 @@ function getSBBParameter() {
 	$.getJSON( "../modules/sbb/assets/getSBBConfig.php", function( data ) {
 		//console.log(data);
 
-		station = data["station"];
-		limit = data["limit"];
-		time_to_station = data["time_to_station"];
-		cols_raw = data["cols"];
-		cols_width_raw = data["cols_width"];
-		lines_raw = data["lines"];
-		categories_raw = data["categories"];
+		sbb_station = data["station"];
+		sbb_limit = data["limit"];
+		sbb_time_to_station = data["time_to_station"];
+		sbb_cols_raw = data["cols"];
+		sbb_cols_width_raw = data["cols_width"];
+		sbb_lines_raw = data["lines"];
+		sbb_categories_raw = data["categories"];
 
-		if (typeof lines != "undefined") {
-			lines = lines_raw.split(",");
+		if (typeof sbb_lines != "undefined") {
+			sbb_lines = sbb_lines_raw.split(",");
 		} else {
-			lines = [];
+			sbb_lines = [];
 		}
 
-		if (typeof categories != "undefined") {
-			categories = categories_raw.split(",");
+		if (typeof sbb_categories != "undefined") {
+			sbb_categories = sbb_categories_raw.split(",");
 		} else {
-			categories = [];
+			sbb_categories = [];
 		}
 
-		cols = cols_raw.split(",");
-		cols_width = cols_width_raw.split(",");
+		sbb_cols = sbb_cols_raw.split(",");
+		sbb_cols_width = sbb_cols_width_raw.split(",");
 		sbb();
 	});
 
@@ -59,14 +58,14 @@ function getSBBParameter() {
 
 function sbb() {
 
-	var width_all = 0;
-	 $.each(cols_width, function(index, el) {
-	   width_all += parseFloat(cols_width[index]);
+	var sbb_width_all = 0;
+	 $.each(sbb_cols_width, function(index, el) {
+	   sbb_width_all += parseFloat(sbb_cols_width[index]);
 	});
 
-	if (width_all != 100) {
-	  width_wo_last = 100 - width_all + parseFloat(cols_width[cols_width.length-1]);
-	  cols_width[cols_width.length-1] = width_wo_last;
+	if (sbb_width_all != 100) {
+	  sbb_width_wo_last = 100 - sbb_width_all + parseFloat(sbb_cols_width[sbb_cols_width.length-1]);
+	  sbb_cols_width[sbb_cols_width.length-1] = sbb_width_wo_last;
 	}
 
 	var sbb = [];
@@ -77,9 +76,9 @@ function sbb() {
 	var connection_count;
 
 	// Falls es nichts zu Filtern gibt
-	if (lines.length == 0 && categories.length == 0){
+	if (sbb_lines.length == 0 && sbb_categories.length == 0){
 	  filtering = false;
-	  amount = limit;
+	  amount = sbb_limit;
 	  lines_text = "Alle";
 	  categories_text = "Alle";
 	} else {
@@ -95,11 +94,11 @@ function sbb() {
 	"&fields[]=stationboard/stop/delay" +
 	"&fields[]=stationboard/stop/departureTimestamp";
 
-	var url = "http://transport.opendata.ch/v1/stationboard?station="+station+"&limit="+amount+fields;
+	var url = "http://transport.opendata.ch/v1/stationboard?station=" + sbb_station + "&limit=" + sbb_amount + fields;
 
-	$("#sbb_station").text(station);
+	$("#sbb_station").text(sbb_station);
 	if (sbb_init){
-		$(".sbb tr:last").append("<tr><td>Anzahl Abfahrten:</td><td> " + limit+ " Stk. </td></tr><tr><td>Folgende Linen:</td><td> "+lines_text+"</td></tr><tr><td>Folgende Kategorien:</td><td> " + categories_text + "</td></tr><tr><td>Anzahl Gehminuten:</td><td> " + time_to_station + " min</td></tr></td>");
+		$(".sbb tr:last").append("<tr><td>Anzahl Abfahrten:</td><td> " + sbb_limit + " Stk. </td></tr><tr><td>Folgende Linen:</td><td> " + lines_text + "</td></tr><tr><td>Folgende Kategorien:</td><td> " + categories_text + "</td></tr><tr><td>Anzahl Gehminuten:</td><td> " + sbb_time_to_station + " min</td></tr></td>");
 		sbb_init = false;
 	}
 	$(document).ready(function() {
@@ -112,7 +111,7 @@ function sbb() {
 
 	  connection_count = 0;
 	  getCount = 0;
-	  var date_now =  Date.now()+(time_to_station*1000*60);
+	  var date_now = Date.now() + (sbb_time_to_station*1000*60);
 
 	  getSBB(date_now);
 
@@ -126,32 +125,32 @@ function sbb() {
 	  getCount++;
 	  // console.log("Begin search: " + getCount);
 
-	  $.ajax({ url: url+"&datetime="+toDate(datetime) }).done(function( content ) {
+	  $.ajax({ url: url + "&datetime=" + toDate(datetime) }).done(function( content ) {
 
 	    data = content;
 
 	    if (filtering){
 	      $.each(content.stationboard, function( index, value ) {
-	        if (($.inArray(value.name, lines) > -1 && connection_count < limit) || (lines.length == 0 && categories.length == 0 && connection_count < limit) || ($.inArray(value.category, categories) > -1 && connection_count < limit)){
+	        if (($.inArray(value.name, sbb_lines) > -1 && connection_count < sbb_limit) || (lines.length == 0 && categories.length == 0 && connection_count < sbb_limit) || ($.inArray(value.category, sbb_categories) > -1 && connection_count < sbb_limit)){
 	          sbb.push(value);
 	          connection_count++;
 	          // console.log("Found Entry: " + connection_count + " - " + timeConverter(value.stop.departureTimestamp) + " - in Query NO: " + getCount);
 	        }
 	      });
 	    } else {
-	      sbb = content.stationboard.slice(0,limit);
-	      connection_count = limit;
+	      sbb = content.stationboard.slice(0, sbb_limit);
+	      connection_count = sbb_limit;
 	    }
 
 	    // Falls noch nicht genug Verbindungen geladen wurden
-	    if (connection_count < limit) {
+	    if (connection_count < sbb_limit) {
 
 	      //console.log(content.stationboard[content.stationboard.length-1].stop.departureTimestamp*1000);
 	      // Holt den letzten Wert aus der Liste und gibt diese Wert an, um ab diesem Zeitpunkt weiter zu suchen
 	      getSBB(content.stationboard[content.stationboard.length-1].stop.departureTimestamp*1000);
 	    }
 
-	    if (connection_count >= limit){
+	    if (connection_count >= sbb_limit){
 
 	      // console.log("Finished search");
 	      // console.log("--------");
@@ -162,7 +161,7 @@ function sbb() {
 	        $(".sbb .old-tr:first-of-type").remove();
 	        name = value.name;
 
-	        if ($.inArray(value.category, categories) > -1) {name = value.category}
+	        if ($.inArray(value.category, sbb_categories) > -1) {name = value.category}
 	        if (name == "S") {name = value.name}
 	        if (name == "BUS") {name = value.name}
 	        if (name == "NFT") {name = value.name}
@@ -173,14 +172,11 @@ function sbb() {
 	        var final_station = this.to;
 	        var departure = timeConverter(this.stop.departureTimestamp);
 	        var platform = removeNull(this.stop.platform);
-	        var timestamp_now = Date.now();
-	        var timestamp_departure = parseInt(this.stop.departureTimestamp*1000);
+	        var timestamp_now = parseInt(Date.now()/1000)
+	        var timestamp_departure = parseInt(this.stop.departureTimestamp);
 	        var delay = removeNull(this.stop.delay);
 
-	        var date_now = new Date(timestamp_now);
-	        var date_departure = new Date(timestamp_departure);
-
-	        var departure_in = date_departure.getHours()*60 + date_departure.getMinutes() - date_now.getHours()*60 - date_now.getMinutes();
+	        var departure_in = parseInt((timestamp_departure-timestamp_now)/60);
 
 	        if (departure_in == 0){
 	          departure_in = '<i class="fa fa-train blink_me" aria-hidden="true"></i>';
@@ -196,8 +192,8 @@ function sbb() {
 	        }
 
 	          $(".sbb").append("<tr class='sbb-row'>");
-	          $.each(cols, function(index, value){
-	            $(".sbb tr:last").append("<td width='"+cols_width[index]+"%'>" + eval(cols[index]) + "</td>");
+	          $.each(sbb_cols, function(index, value){
+	            $(".sbb tr:last").append("<td width='" + sbb_cols_width[index]+"%'>" + eval(sbb_cols[index]) + "</td>");
 	          });
 	          $(".sbb").append("</tr>");
 	      });
@@ -224,7 +220,6 @@ function timeConverter(timestamp){
 
   return hour + ':' + min;
 }
-
 
 function toDate(timestamp){
   var date = new Date(timestamp);
