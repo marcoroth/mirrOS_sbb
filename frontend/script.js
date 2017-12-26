@@ -172,11 +172,11 @@ function sbb() {
 	        var final_station = this.to;
 	        var departure = timeConverter(this.stop.departureTimestamp);
 	        var platform = removeNull(this.stop.platform);
-	        var timestamp_now = Math.floor(Date.now()/1000)
+	        var timestamp_now = Math.ceil(Date.now()/1000);
 	        var timestamp_departure = parseInt(this.stop.departureTimestamp);
 	        var delay = removeNull(this.stop.delay);
 
-	        var departure_in = parseInt((timestamp_departure-timestamp_now)/60);
+	        var departure_in = parseInt((timestamp_departure-timestamp_now)/60)+1;
 
 	        if (departure_in == 0){
 	          departure_in = '<i class="fa fa-train blink_me" aria-hidden="true"></i>';
