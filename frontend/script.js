@@ -172,7 +172,7 @@ function sbb() {
 	        var final_station = this.to;
 	        var departure = timeConverter(this.stop.departureTimestamp);
 	        var platform = removeNull(this.stop.platform);
-	        var timestamp_now = parseInt(Date.now()/1000)
+	        var timestamp_now = Math.floor(Date.now()/1000)
 	        var timestamp_departure = parseInt(this.stop.departureTimestamp);
 	        var delay = removeNull(this.stop.delay);
 
