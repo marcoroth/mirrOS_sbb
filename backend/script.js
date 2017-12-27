@@ -1,6 +1,28 @@
 $(function() {
 	$( "#sbb_sortable" ).sortable();
 	$( "#sbb_sortable" ).disableSelection();
+
+	autocomplete_url = "http://transport.opendata.ch/v1/locations";
+
+	$( "#sbb_station" ).autocomplete({
+			source: function (request, response) {
+				$.ajax({
+					url: autocomplete_url,
+					data: "query=" + request.term,
+					success: function (data) {
+						stations = [];
+
+						$.each(data.stations, function(index, el) {
+							stations.push(el.name);
+						});
+
+						response(stations);
+					}
+				});
+			},
+      minLength: 3
+    });
+
 });
 
 $('#sbb__edit').click(function() {
