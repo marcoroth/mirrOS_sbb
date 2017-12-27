@@ -150,47 +150,51 @@ function sbb() {
 	      // console.log("--------");
 	      $(".sbb tr").addClass("old-tr");
 
-	      $.each(sbb, function( index, value ) {
+				if (sbb.length > 0){
+		      $.each(sbb, function( index, value ) {
 
-	        $(".sbb .old-tr:first-of-type").remove();
-	        name = value.name;
+		        $(".sbb .old-tr:first-of-type").remove();
+		        name = value.name;
 
-	        if ($.inArray(value.category, sbb_categories) > -1) {name = value.category}
-	        if (name == "S") {name = value.name}
-	        if (name == "BUS") {name = value.name}
-	        if (name == "NFT") {name = value.name}
-	        if (name == "NFB") {name = value.name}
-	        if (name == "T") {name = value.name}
-	        var type = this.name;
+		        if ($.inArray(value.category, sbb_categories) > -1) {name = value.category}
+		        if (name == "S") {name = value.name}
+		        if (name == "BUS") {name = value.name}
+		        if (name == "NFT") {name = value.name}
+		        if (name == "NFB") {name = value.name}
+		        if (name == "T") {name = value.name}
 
-	        var final_station = this.to;
-	        var departure = timeConverter(this.stop.departureTimestamp);
-	        var platform = removeNull(this.stop.platform);
-	        var timestamp_now = Math.ceil(Date.now()/1000);
-	        var timestamp_departure = parseInt(this.stop.departureTimestamp);
-	        var delay = removeNull(this.stop.delay);
+		        var type = this.name;
+		        var final_station = this.to;
+		        var departure = timeConverter(this.stop.departureTimestamp);
+		        var platform = removeNull(this.stop.platform);
+		        var timestamp_now = Math.ceil(Date.now()/1000);
+		        var timestamp_departure = parseInt(this.stop.departureTimestamp);
+		        var delay = removeNull(this.stop.delay);
+		        var departure_in = parseInt((timestamp_departure-timestamp_now)/60);
 
-	        var departure_in = parseInt((timestamp_departure-timestamp_now)/60)+1;
+		        if (departure_in == 0){
+		          departure_in = '<i class="fa fa-train blink_me" aria-hidden="true"></i>';
+		        } else if (departure_in < 0) {
+		          if (delay != "-") {
+		            departure_in = '<i class="fa fa-clock-o" aria-hidden="true"></i>';
+		            delay = delay + "'";
+		          } else {
+		            departure_in = "Morgen";
+		          }
+		        } else {
+		          departure_in = departure_in+"'";
+		        }
 
-	        if (departure_in == 0){
-	          departure_in = '<i class="fa fa-train blink_me" aria-hidden="true"></i>';
-	        } else if (departure_in < 0) {
-	          if (delay != "-") {
-	            departure_in = '<i class="fa fa-clock-o" aria-hidden="true"></i>';
-	            delay = delay + "'";
-	          } else {
-	            departure_in = "Morgen";
-	          }
-	        } else {
-	          departure_in = departure_in+"'";
-	        }
-
-	          $(".sbb").append("<tr class='sbb-row'>");
-	          $.each(sbb_cols, function(index, value){
-	            $(".sbb tr:last").append("<td width='" + sbb_cols_width[index]+"%'>" + eval(sbb_cols[index]) + "</td>");
-	          });
-	          $(".sbb").append("</tr>");
-	      });
+		          $(".sbb").append("<tr class='sbb-row'>");
+		          $.each(sbb_cols, function(index, value){
+		            $(".sbb tr:last").append("<td width='" + sbb_cols_width[index]+"%'>" + eval(sbb_cols[index]) + "</td>");
+		          });
+		          $(".sbb").append("</tr>");
+		      });
+				} else {
+					$(".sbb .old-tr:first-of-type").remove();
+					$(".sbb").append("<tr class='sbb-row'><td><?php echo _("sbb_no_departures"); ?></td></tr>");
+				}
 
 	      sbb = [];
 	    }
