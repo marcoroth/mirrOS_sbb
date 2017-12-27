@@ -92,5 +92,8 @@ msgstr ""
 msgid "sbb_width_placeholder"
 msgstr "Breite in Prozent (z.B. 10)"
 
+msgid "sbb_no_departures"
+msgstr "Keine Verbindungen gefunden. Versuche es z.B. mit einer anderen Haltestelle."
+
 msgid "sbb_save"
 msgstr "Speichern"
