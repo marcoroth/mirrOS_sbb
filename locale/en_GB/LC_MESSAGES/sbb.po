@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mirr.OS SBB Module V1.0.0\n"
 "POT-Creation-Date: 2016-05-07 11:02+0200\n"
-"PO-Revision-Date: 2017-12-26 22:23+0100\n"
+"PO-Revision-Date: 2017-12-28 18:34+0100\n"
 "Last-Translator: Marco Roth <info@marco-roth.ch>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -26,7 +26,7 @@ msgstr "The next few departures"
 msgid "sbb_platform"
 msgstr "Platform"
 
-msgid "sbb_destination"
+msgid "sbb_final_station"
 msgstr "Destination"
 
 msgid "sbb_departure"
@@ -49,3 +49,33 @@ msgstr "delay"
 
 msgid "sbb_from"
 msgstr "from"
+
+msgid "sbb_type"
+msgstr "Type"
+
+msgid "sbb_title_stationname"
+msgstr "Station name"
+
+msgid "sbb_title_limit"
+msgstr "amount of departures"
+
+msgid "sbb_title_line"
+msgstr ""
+
+msgid "sbb_title_category"
+msgstr ""
+
+msgid "sbb_title_minute_to_walk"
+msgstr "minutes to the station"
+
+msgid "sbb_title_cols"
+msgstr "columns, width and order"
+
+msgid "sbb_width_placeholder"
+msgstr "width in percent (e.g. 10)"
+
+msgid "sbb_no_departures"
+msgstr "No departures found. Please try it again with different settings (maybe with a different station)."
+
+msgid "sbb_save"
+msgstr "Save"

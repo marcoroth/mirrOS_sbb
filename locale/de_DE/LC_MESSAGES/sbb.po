@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mirr.OS SBB Module V1.0.0\n"
 "POT-Creation-Date: 2016-05-07 11:02+0200\n"
-"PO-Revision-Date: 2017-12-26 22:24+0100\n"
+"PO-Revision-Date: 2017-12-28 18:29+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,38 +56,20 @@ msgstr "Linie/Typ"
 msgid "sbb_title_stationname"
 msgstr "Name der Haltestelle"
 
-msgid "sbb_info_stationname"
-msgstr ""
-
 msgid "sbb_title_limit"
 msgstr "Anzahl der Abfahrten"
-
-msgid "sbb_info_limit"
-msgstr ""
 
 msgid "sbb_title_line"
 msgstr "Einschränkung der Linien"
 
-msgid "sbb_info_line"
-msgstr ""
-
 msgid "sbb_title_category"
 msgstr "Einschränkung der Kategorien"
-
-msgid "sbb_info_category"
-msgstr ""
 
 msgid "sbb_title_minute_to_walk"
 msgstr "Gehminuten zur Station"
 
-msgid "sbb_info_minute_to_walk"
-msgstr ""
-
 msgid "sbb_title_cols"
 msgstr "Spalten, Breite und Reihenfolge"
-
-msgid "sbb_info_cols"
-msgstr ""
 
 msgid "sbb_width_placeholder"
 msgstr "Breite in Prozent (z.B. 10)"
