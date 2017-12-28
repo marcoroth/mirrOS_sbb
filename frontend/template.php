@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css">
 
 <h2 class="module__title">
-  <?php echo _("sbb_title"); ?>
+  <?php echo str_replace(" (CH)", "", _("sbb_title")); ?>
   <span class="sbb_station_name">
     <?php echo _("sbb_from"); ?>: <span id="sbb_station"></span>
   </span>
