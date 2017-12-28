@@ -173,7 +173,7 @@ function sbb() {
 		        var departure_in = parseInt((timestamp_departure-timestamp_now)/60);
 
 		        if (departure_in == 0){
-		          departure_in = '<i class="fa fa-train blink_me" aria-hidden="true"></i>';
+		          departure_in = '<i class="fa fa-train blink" aria-hidden="true"></i>';
 		        } else if (departure_in < 0) {
 		          if (delay != "-") {
 		            departure_in = '<i class="fa fa-clock-o" aria-hidden="true"></i>';
