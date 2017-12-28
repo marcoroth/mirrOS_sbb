@@ -32,10 +32,10 @@
 <input type="text" id="sbb_station" placeholder="<?php echo _('sbb_title_stationname');?>" value="<?php echo $sbb_station; ?>"/>
 
 <h5><?php echo _('sbb_title_limit');?></h5>
-<input type="text" id="sbb_limit" placeholder="<?php echo _('sbb_title_limit');?>" value="<?php echo $sbb_limit; ?>"/>
+<input type="number" id="sbb_limit" placeholder="<?php echo _('sbb_title_limit');?>" value="<?php echo $sbb_limit; ?>"/>
 
 <h5><?php echo _('sbb_title_minute_to_walk');?></h5>
-<input type="text" id="sbb_time_to_station" placeholder="<?php echo _('sbb_title_minute_to_walk');?>" value="<?php echo $sbb_time_to_station; ?>"/>
+<input type="number" id="sbb_time_to_station" placeholder="<?php echo _('sbb_title_minute_to_walk');?>" value="<?php echo $sbb_time_to_station; ?>"/>
 
 <h5><?php echo _('sbb_title_cols');?></h5>
 
