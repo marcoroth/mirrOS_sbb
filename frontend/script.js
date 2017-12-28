@@ -174,13 +174,6 @@ function sbb() {
 
 		        if (departure_in == 0){
 		          departure_in = '<i class="fa fa-train blink" aria-hidden="true"></i>';
-		        } else if (departure_in < 0) {
-		          if (delay != "-") {
-		            departure_in = '<i class="fa fa-clock-o" aria-hidden="true"></i>';
-		            delay = delay + "'";
-		          } else {
-		            departure_in = "Morgen";
-		          }
 		        } else {
 		          departure_in = departure_in+"'";
 		        }
