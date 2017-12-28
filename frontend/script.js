@@ -148,12 +148,12 @@ function sbb() {
 
 	      // console.log("Finished search");
 	      // console.log("--------");
-	      $(".sbb tr").addClass("old-tr");
+
+				$(".sbb tr").remove();
 
 				if (sbb.length > 0){
 		      $.each(sbb, function( index, value ) {
 
-		        $(".sbb .old-tr:first-of-type").remove();
 		        name = value.name;
 
 		        if ($.inArray(value.category, sbb_categories) > -1) {name = value.category}
@@ -170,19 +170,21 @@ function sbb() {
 		        var timestamp_now = Math.ceil(Date.now()/1000);
 		        var timestamp_departure = parseInt(this.stop.departureTimestamp);
 		        var delay = removeNull(this.stop.delay);
-		        var departure_in = parseInt((timestamp_departure-timestamp_now)/60);
+		        var departure_in = Math.ceil((timestamp_departure-timestamp_now)/60);
 
-		        if (departure_in == 0){
+		        if (departure_in <= 0){
 		          departure_in = '<i class="fa fa-train blink" aria-hidden="true"></i>';
 		        } else {
 		          departure_in = departure_in+"'";
 		        }
 
-		          $(".sbb").append("<tr class='sbb-row'>");
-		          $.each(sbb_cols, function(index, value){
-		            $(".sbb tr:last").append("<td width='" + sbb_cols_width[index]+"%'>" + eval(sbb_cols[index]) + "</td>");
-		          });
-		          $(".sbb").append("</tr>");
+		        $(".sbb").append("<tr class='sbb-row'>");
+
+						$.each(sbb_cols, function(index, value){
+		        	$(".sbb tr:last").append("<td width='" + sbb_cols_width[index]+"%'>" + eval(sbb_cols[index]) + "</td>");
+		        });
+
+						$(".sbb").append("</tr>");
 		      });
 				} else {
 					$(".sbb .old-tr:first-of-type").remove();
