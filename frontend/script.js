@@ -14,47 +14,34 @@ var sbb_cols;
 var sbb_cols_width;
 
 $(document).ready(function () {
-	getSBBParameter();
+
+	sbb_station = "<?php echo getConfigValue('sbb_station'); ?>";
+	sbb_limit = "<?php echo getConfigValue('sbb_limit'); ?>";
+	sbb_time_to_station = "<?php echo getConfigValue('sbb_time_to_station'); ?>";
+	sbb_cols_raw = "<?php echo getConfigValue('sbb_cols'); ?>";
+	sbb_cols_width_raw = "<?php echo getConfigValue('sbb_cols_width'); ?>";
+	sbb_lines_raw = "<?php echo getConfigValue('sbb_lines'); ?>";
+	sbb_categories_raw = "<?php echo getConfigValue('sbb_categories'); ?>";
+
+	if (typeof sbb_lines != "undefined") {
+		sbb_lines = sbb_lines_raw.split(",");
+	} else {
+		sbb_lines = [];
+	}
+
+	if (typeof sbb_categories != "undefined") {
+		sbb_categories = sbb_categories_raw.split(",");
+	} else {
+		sbb_categories = [];
+	}
+
+	sbb_cols = sbb_cols_raw.split(",");
+	sbb_cols_width = sbb_cols_width_raw.split(",");
+
+	reloadSBB();
 });
 
-function getSBBParameter() {
-
-	$.getJSON( "../modules/sbb/assets/getSBBConfig.php", function( data ) {
-		//console.log(data);
-
-		sbb_station = data["station"];
-		sbb_limit = data["limit"];
-		sbb_time_to_station = data["time_to_station"];
-		sbb_cols_raw = data["cols"];
-		sbb_cols_width_raw = data["cols_width"];
-		sbb_lines_raw = data["lines"];
-		sbb_categories_raw = data["categories"];
-
-		if (typeof sbb_lines != "undefined") {
-			sbb_lines = sbb_lines_raw.split(",");
-		} else {
-			sbb_lines = [];
-		}
-
-		if (typeof sbb_categories != "undefined") {
-			sbb_categories = sbb_categories_raw.split(",");
-		} else {
-			sbb_categories = [];
-		}
-
-		sbb_cols = sbb_cols_raw.split(",");
-		sbb_cols_width = sbb_cols_width_raw.split(",");
-		sbb();
-	});
-
-	// alle 5 Sekunden aktualiseren
-	window.setTimeout(function() {
-		sbb();
-	}, 5000);
-
-}
-
-function sbb() {
+function reloadSBB() {
 
 	var sbb_width_all = 0;
 	 $.each(sbb_cols_width, function(index, el) {
