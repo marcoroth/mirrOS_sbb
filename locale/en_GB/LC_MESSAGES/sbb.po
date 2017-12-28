@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mirr.OS SBB Module V1.0.0\n"
 "POT-Creation-Date: 2016-05-07 11:02+0200\n"
-"PO-Revision-Date: 2017-12-28 18:34+0100\n"
+"PO-Revision-Date: 2017-12-28 18:53+0100\n"
 "Last-Translator: Marco Roth <info@marco-roth.ch>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -79,3 +79,15 @@ msgstr "No departures found. Please try it again with different settings (maybe 
 
 msgid "sbb_save"
 msgstr "Save"
+
+msgid "sbb_reset_config"
+msgstr "Reset Config"
+
+msgid "sbb_reset_config_message"
+msgstr "Are you sure you want to reset your SBB config?"
+
+msgid "sbb_yes"
+msgstr "yes"
+
+msgid "sbb_no"
+msgstr "no"
