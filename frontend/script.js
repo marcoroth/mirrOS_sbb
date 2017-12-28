@@ -75,6 +75,7 @@ function reloadSBB() {
 	"&fields[]=stationboard/to" +
 	"&fields[]=stationboard/name" +
 	"&fields[]=stationboard/category" +
+	"&fields[]=stationboard/number" +
 	"&fields[]=stationboard/stop/platform" +
 	"&fields[]=stationboard/stop/delay" +
 	"&fields[]=stationboard/stop/departureTimestamp";
@@ -143,14 +144,35 @@ function reloadSBB() {
 
 		        name = value.name;
 
-		        if ($.inArray(value.category, sbb_categories) > -1) {name = value.category}
-		        if (name == "S") {name = value.name}
-		        if (name == "BUS") {name = value.name}
-		        if (name == "NFT") {name = value.name}
-		        if (name == "NFB") {name = value.name}
-		        if (name == "T") {name = value.name}
+		        // if ($.inArray(value.category, sbb_categories) > -1) {name = value.category}
+		        // if (name == "S") {name = value.name}
+		        // if (name == "BUS") {name = value.name}
+		        // if (name == "NFT") {name = value.name}
+		        // if (name == "NFB") {name = value.name}
+		        // if (name == "T") {name = value.name}
+						
+						if (
+							this.category == "NFT" ||
+							this.category == "IR" ||
+							this.category == "IC" ||
+							this.category == "BUS" ||
+							this.category == "NFB" ||
+							this.category == "T" ||
+							this.category == "KB" ||
+							this.category == "S"
+						){
+							if (this.category == "S" && this.name.split(" ")[0] == "S"){
+								type = "S"
+							} else {
+								type = this.category + " " + this.number;
+							}
+						} else if (this.category == "TGV" || this.category == "ICE") {
+							type = this.name;
+						} else {
+							type = this.category;
+						}
 
-		        var type = this.name;
+		        // var type = this.name;
 		        var final_station = this.to;
 		        var departure = timeConverter(this.stop.departureTimestamp);
 		        var platform = removeNull(this.stop.platform);
