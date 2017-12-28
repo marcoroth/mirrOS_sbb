@@ -1,6 +1,6 @@
-# mirrOS SBB-Abfahrten (CH) Modul
+# mirrOS SBB-Abfahrten Modul
 
-Das SBB Modul integriert die Bahn-, Bus-, Tram-, Zug- und Schiff-Abfahrten der SBB ins glancr mirrOS.
+Das SBB Modul integriert die ÖV-Abfahrten der SBB ins glancr mirrOS.
 
 
 ## Voraussetzungen
@@ -19,6 +19,7 @@ Die Modul-Updates werden direkt via mirrOS-Backend installiert.
 ![Preview](assets/modulpreviews_sbb.png)
 
 ## Weitere Informationen
+* [Transport API](http://transport.opendata.ch)
 * [Abfahrten-Modul](https://glancr.de/module/mobilitaet/verkehrsbetriebe/)
 * [Glancr](https://glancr.de)
 * [mirrOS](https://glancr.de/#mirr_os)
