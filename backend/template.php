@@ -67,6 +67,7 @@
 <!-- <h5><?php echo _("sbb_advanced_options") ?></h5>
 <a href="/modules/sbb/backend/lines.php" target="_blank">Erweiterte Einstellungen</a><br /><br /> -->
 
+<a href="/modules/sbb/assets/reset.php"><?php echo _("sbb_reset_config"); ?></a><br /><br />
 
 <div class="block__add" id="sbb__edit">
 	<button class="sbb__edit--button" href="#">
